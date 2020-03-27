@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam</title>
+</head>
+<body>
+    <h1>Hi</h1>
+    <form id='addAuthor'">
+        <div>
+            <input type="text" id='author' placeholder="Author" value="">
+        </div>
+        <div>
+            <textarea id="message" placeholder="Message" value=''></textarea>
+        </div>
+        <input type="submit" value='submit'>
+    </form>
+    <div id="output"></div>
+    <script>
+        fetch('/messages').then(res=>{res.json().then(res2=>{console.dir(res2)})})
+        
+    </script>
+     <script src="./qOne.js"></script>
+     <script src="./qTwo.js"></script>
+     <script src="./qFour.js"></script>
+
+</body>
+</html>

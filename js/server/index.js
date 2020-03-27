@@ -41,7 +41,7 @@ app.get('/authors',(req, res)=>{
 
 app.post('/message-by-author', (req, res) => {
     const { author } = req.body;
-
+    console.log(req.body)
     let authors = {}
     messages.forEach(message => {
         if (authors.hasOwnProperty(message.author)) {
@@ -58,3 +58,4 @@ const port = process.env.PORT || 3002;
 app.listen(port, () => {
     console.log(`Server listen on port ${port}`);
 })
+
