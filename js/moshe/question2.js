@@ -13,5 +13,9 @@ const Customer = {
 
 }
 
+//very good
+
+//you are missing the solution with the class
+
 Customer.check();
 

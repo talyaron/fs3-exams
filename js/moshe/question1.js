@@ -9,6 +9,9 @@ function FindTheBiggerNumber (num1, num2){
         }
     }
 
+    //should return the number in return
+    
+
 };
 
 FindTheBiggerNumber(10, 304);

@@ -10,7 +10,7 @@ function FindTheBiggestNumber (arr){
         } else { FilteredNumbers.push(arr[i]);
 
         }
-    }
+    } //Well done!!!!
 
     let num = 0;
 

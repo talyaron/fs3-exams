@@ -9,4 +9,12 @@ c = c + 1 זה reference
 בגלל שבאחרון  שיניתי את הערך שלו אז הוא לא משתנה בראשון 
 רק מגדיר מחדש את האחרון
 
+by reference, refers to non primitive variables like array, object, date etc. It point to the location in memory. 
+if you set one object to be equal to other object, they now are the same. changing one will change the other.
+x={a:1}
+b=x
+b.a -->1
+x.a = 5
+b.a --> 5
+
 

@@ -5,6 +5,7 @@ class Customer {
             this._isClubMember = isClubMember
     }
 
+    // why do you need all thouse elements in the comming lines? 
 
     get name() {
         return this._name;

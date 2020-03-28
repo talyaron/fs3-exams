@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function bigNumber(num1, num2) {
+            if (Number.isInteger(num1) && Number.isInteger(num2)) {
+                if (num1 > num2) {
+                    console.log(`the bigger number is ${num1}`)
+                } else { console.log(`the bigger number is ${num2}`) }
+            } else { console.log(false) }
+
+            //should return the heighst number or return false
+        }
+
+        bigNumber(6, 7);
+
+
+        function bigNumberHard(numbers) {
+            numbers.forEach(number => {
+                if (Number.isInteger(number)){
+                    // althogh "a" is not a number, it passed. and it gave a as the bigger number.
+                    numbers.sort(); //why do you sort each time?
+                    let lastNumber = numbers.length - 1;
+                    console.log(`the biggest number in the array is ${numbers[lastNumber]}`);
+                }else(console.log(false))
+            });
+
+             //should return the heighst number or return false
+
+        }
+        let arr =[1,2,5,4,'a']
+        bigNumberHard(arr);
+
+        
+    </script>
+</body>
+
+</html>

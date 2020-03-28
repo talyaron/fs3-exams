@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        let client = {
+            name: 'tal',
+            address: 'kadum',
+            isClient: true,
+            sayHi: function () {
+                if (this.isClient) {
+                    console.log(`hello ${this.name} we are happy you joined the club`)
+                }else{ console.log(`${this.name} is not part of the club`)}
+            }
+        }
+
+        client.sayHi();
+
+
+        class Clients {
+            constructor(name, address, isClient) {
+                this.name = name;
+                this.address = address;
+                this.isClient = isClient;
+                this.sayHi = function () {
+                    if (this.isClient) {
+                        console.log(`hello ${this.name} we are happy you joined the club`)
+                    }else{ console.log(`${this.name} is not part of the club`)}
+                };
+
+            }
+        }
+
+        let ben = new Clients('ben', 'kfar saba', true);
+        let moshe = new Clients('moshe', 'holon', false);
+
+        ben.sayHi();
+        moshe.sayHi();
+
+    </script>
+</body>
+
+</html>

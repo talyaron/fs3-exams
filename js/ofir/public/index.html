@@ -19,9 +19,9 @@
     <div id='root'> </div>
 
     <script>
-        
+
         let messageClassArray = []
-        
+
         class Messages {
             constructor(author, message, date) {
                 this.author = author,
@@ -52,13 +52,13 @@
             }
         }
 
-        fetch('messages').then(res => {
+        fetch('/messages').then(res => {
             res.json().then(res2 => {
                 console.log(res2)
                 for (let i in res2) {
                     // answar of section5
-                    let newMessage = new Messages(res2[i].author, res2[i].message, res2[i].date)
-                    data.push(newMessage)
+                    // let newMessage = new Messages(res2[i].author, res2[i].message, res2[i].date)
+                    // data.push(newMessage)
 
 
                     // answar of section1 + 2

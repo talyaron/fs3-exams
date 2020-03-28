@@ -48,6 +48,7 @@ function whoIsBiggerArray(array) {
             
         } else {
             return console.log("the type of one of the numbers in the are is not number")
+            //you should remove the non number. besid this, everthing is good...
         }
         
     }

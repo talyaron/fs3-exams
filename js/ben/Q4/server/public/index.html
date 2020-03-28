@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam</title>
+</head>
+
+<body>
+    <form method="get" onsubmit="text(event)" id="myForm">
+
+        <input class="input" name="name" type="text" placeholder="type name">
+        <input class="input" name="message" type="text" placeholder="type message">
+        <input type="submit" value="push the button">
+    </form>
+
+    <div id="messages"></div>
+
+
+    <div id="details"></div>
+    <div id="authors"></div>
+    <div id="message-by-author"></div>
+
+
+    <script>
+
+        // chat!!!! נעשה בטעות, החלטתי להשאיר לי שיהיה
+        // function text(e) {
+        //     let message = document.getElementById('messages');
+        //     console.dir(e);
+        //     e.preventDefault();
+        //     message.innerHTML += (`<div class="textBox">${e.target[1].value}</div>`);
+        //     document.getElementById("myForm").reset();
+
+        // }
+
+        function text(e) {
+            e.preventDefault();
+            let data = {
+                author: e.target.children.name.value,
+                message: e.target.children.message.value
+
+            }
+            document.getElementById("myForm").reset();
+            fetch('/message', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'content-Type': 'application/json'
+                }
+
+
+            }).then(res => {
+                res.json().then(resJson => {
+                    console.log('resJson');
+                    console.dir(resJson);
+                    printData();
+                })
+            })
+        }
+
+
+        function printData() {
+            fetch('/messages')
+                .then(res => {
+                    res.json()
+                        .then(res2 => {
+                            console.dir(res2)
+                            let messages = {};
+                            const authors = document.getElementById('details');
+                            authors.innerHTML = '';
+                            for (let i = 0; i < res2.length; i++) {
+
+                                authors.innerHTML += `<div> the author is ${res2[i].author}, 
+                                 message wrote at: ${res2[i].date}, 
+                                  message length is ${res2[i].message.length}</div>`
+
+                                messages[i] = `${res2[i].message}`
+                            };
+                            console.log(messages);
+                        })
+                })
+        }
+        printData();
+
+
+
+        fetch('/authors')
+            .then(res => {
+                res.json()
+                    .then(res => {
+
+                        let author = res[0];
+
+                        console.log(res)
+                        console.log(author)
+                        // shows al authors.......
+                        // const newAuthors = document.getElementById('authors');
+                        // newAuthors.innerHTML = '';
+                        // for (let i = 0; i < res.length; i++) {
+
+                        //     newAuthors.innerHTML += `<div> the author is ${res[i]}</div>`
+                        // };
+                        console.log(author)
+                        fetch('/message-by-author', {
+                            method: 'POST',
+                            body: JSON.stringify({ author }),
+                            headers: {
+                                'content-Type': 'application/json'
+                            }
+
+
+                        }).then(res => {
+                            res.json().then(res => {
+                                console.log('resJson');
+                                console.dir(res);
+                                const authorsAndMessages = document.getElementById('message-by-author');
+                                authorsAndMessages.innerHTML = '';
+                                for (let i = 0; i < res.length; i++) {
+
+                                    authorsAndMessages.innerHTML += `<div>${author} says ${res[i].message}</div>`
+                                };
+                            })
+                        })
+                    })
+            })
+
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -7,7 +7,7 @@ function testingAB(a,b){
         return false
     }
     else{
-      console.log( Math.max(a,b)) 
+      console.log( Math.max(a,b)) // should return the heigher number.
     } 
 }
 testingAB(7,5)
@@ -17,7 +17,8 @@ testingAB(7,5)
 
 let numbers=[1,2,3,4,5,6,6,99]
 
-function testingArr(){
+function testingArr() {
+  //you didn't check they are numbers + function should return
    console.log(Math.max(...numbers))
    
 }
