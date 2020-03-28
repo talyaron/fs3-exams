@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam</title>
+</head>
+
+<body>
+
+    <form onsubmit="sendData(event)">
+        <input type="text" name="author" id="" placeholder="Author">
+        <input type="text" name="message" id="" placeholder="Message">
+        <input type="text" name="date" id="" placeholder="Date">
+        <input type="submit" value="Send">
+    </form>
+
+    <div id='root'> </div>
+
+    <script>
+        
+        let messageClassArray = []
+        
+        class Messages {
+            constructor(author, message, date) {
+                this.author = author,
+                    this._message = message,
+                    this.date = date
+
+            }
+
+            get author() {
+                return this.author;
+            }
+
+            get message() {
+                return this.messsage;
+            }
+
+            get date() {
+                return this.date;
+            }
+            set author(newAuthor) {
+                this._author = newAuthor;
+            }
+            set message(newMessage) {
+                this._message = newMessage;
+            }
+            set date(newDate) {
+                this._date = newDate;
+            }
+        }
+
+        fetch('messages').then(res => {
+            res.json().then(res2 => {
+                console.log(res2)
+                for (let i in res2) {
+                    // answar of section5
+                    let newMessage = new Messages(res2[i].author, res2[i].message, res2[i].date)
+                    data.push(newMessage)
+
+
+                    // answar of section1 + 2
+                    let div = document.getElementById("root");
+                    let newDiv = document.createElement("div")
+
+                    let sentence = `The author name is  :: ${res2[i].author}  message is (${res2[i].message}) and date is ::(${res2[i].date})`
+                    let textnode = document.createTextNode(sentence)
+                    let newTextnode = document.createTextNode(`${sentence}  length::${sentence.length}`)
+
+                    newDiv.appendChild(newTextnode);
+                    div.appendChild(newDiv)
+                }
+            })
+        })
+        //  answar of section3 + 4 + 5
+        function sendData(e) {
+
+            e.preventDefault()
+            // answar of section5
+            let newMessage = new Messages(e.target.elements.author.value.author, e.target.elements.message.value, e.target.elements.date.value)
+            data.push(newMessage)
+            console.log(data)
+            let div = document.getElementById("root");
+            let newDiv = document.createElement("div")
+
+            let sentence = `The author name is  :: ${e.target.elements.author.value}  message is (${e.target.elements.message.value}) and date is ::(${e.target.elements.date.value})`
+            let textnode = document.createTextNode(sentence)
+            let newTextnode = document.createTextNode(`${sentence}  length::${sentence.length}`)
+
+            newDiv.appendChild(newTextnode);
+            div.appendChild(newDiv)
+
+        }
+
+
+    </script>
+</body>
+
+</html>
