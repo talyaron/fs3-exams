@@ -23,14 +23,18 @@
 
 
         function bigNumberHard(numbers) {
+            let numbersArray = []
             numbers.forEach(number => {
                 if (Number.isInteger(number)){
+                    numbersArray.push(number)
                     // althogh "a" is not a number, it passed. and it gave a as the bigger number.
-                    numbers.sort(); //why do you sort each time?
-                    let lastNumber = numbers.length - 1;
-                    console.log(`the biggest number in the array is ${numbers[lastNumber]}`);
-                }else(console.log(false))
+                  
+                }
             });
+            numbersArray.sort()
+
+            
+            
 
              //should return the heighst number or return false
 

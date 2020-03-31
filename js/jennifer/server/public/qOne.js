@@ -19,7 +19,7 @@ let numbers=[1,2,3,4,5,6,6,99]
 
 function testingArr() {
   //you didn't check they are numbers + function should return
-   console.log(Math.max(...numbers))
+   return Math.max(...numbers)
    
 }
 testingArr()
