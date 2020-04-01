@@ -23,7 +23,7 @@ app.post('/message', (req, res) => {
     if (author && messages) {
         messages.push({ author, message, date: new Date().getTime() });
         console.log(messages);
-        res.send({ success: true })
+        res.send({ success: true, messages})
     } else {
         res.send({ success: false })
     }

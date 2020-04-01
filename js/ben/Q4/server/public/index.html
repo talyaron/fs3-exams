@@ -8,6 +8,7 @@
 </head>
 
 <body>
+    <button onclick='getByAuthors(event)'> By authors</button>
     <form method="get" onsubmit="text(event)" id="myForm">
 
         <input class="input" name="name" type="text" placeholder="type name">
@@ -42,7 +43,9 @@
                 message: e.target.children.message.value
 
             }
-            document.getElementById("myForm").reset();
+
+            e.target.reset();
+
             fetch('/message', {
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -86,46 +89,84 @@
 
 
 
-        fetch('/authors')
-            .then(res => {
-                res.json()
-                    .then(res => {
+        // fetch('/authors')
+        //     .then(res => {
+        //         res.json()
+        //             .then(res => {
 
-                        let author = res[0];
+        //                 let author = res[0];
 
-                        console.log(res)
-                        console.log(author)
-                        // shows al authors.......
-                        // const newAuthors = document.getElementById('authors');
-                        // newAuthors.innerHTML = '';
-                        // for (let i = 0; i < res.length; i++) {
+        //                 console.log(res)
+        //                 console.log(author)
+        //                 // shows al authors.......
+        //                 // const newAuthors = document.getElementById('authors');
+        //                 // newAuthors.innerHTML = '';
+        //                 // for (let i = 0; i < res.length; i++) {
 
-                        //     newAuthors.innerHTML += `<div> the author is ${res[i]}</div>`
-                        // };
-                        console.log(author)
-                        fetch('/message-by-author', {
-                            method: 'POST',
-                            body: JSON.stringify({ author }),
-                            headers: {
-                                'content-Type': 'application/json'
-                            }
+        //                 //     newAuthors.innerHTML += `<div> the author is ${res[i]}</div>`
+        //                 // };
+        //                 console.log(author)
+        //                 fetch('/message-by-author', {
+        //                     method: 'POST',
+        //                     body: JSON.stringify({ author }),
+        //                     headers: {
+        //                         'content-Type': 'application/json'
+        //                     }
 
 
-                        }).then(res => {
-                            res.json().then(res => {
-                                console.log('resJson');
-                                console.dir(res);
-                                const authorsAndMessages = document.getElementById('message-by-author');
-                                authorsAndMessages.innerHTML = '';
-                                for (let i = 0; i < res.length; i++) {
+        //                 }).then(res => {
+        //                     res.json().then(res => {
+        //                         console.log('resJson');
+        //                         console.dir(res);
+        //                         const authorsAndMessages = document.getElementById('message-by-author');
+        //                         authorsAndMessages.innerHTML = '';
+        //                         for (let i = 0; i < res.length; i++) {
 
-                                    authorsAndMessages.innerHTML += `<div>${author} says ${res[i].message}</div>`
-                                };
-                            })
-                        })
-                    })
+        //                             authorsAndMessages.innerHTML += `<div>${author} says ${res[i].message}</div>`
+        //                         };
+        //                     })
+        //                 })
+        //             })
+        //     })
+
+        const getByAuthors = async () => {
+            let authors = await getAuthors;
+            console.log(authors)
+
+
+            authors.forEach(async author => {
+                let messages = await getMessafgesByAuthors(author);
+                console.log(authors)
             })
+        }
 
+        const getAuthors = new Promise((resolve, reject) => {
+            fetch('/authors')
+                .then(res => {
+                    res.json().then(authors => {
+                        resolve(authors)
+
+                    })
+                })
+        })
+
+        const getMessafgesByAuthors = (author) => {
+            return new Promise((resolve, reject) => {
+                fetch('/message-by-author', {
+                    method: 'POST',
+                    body: JSON.stringify({ author }),
+                    headers: {
+                        'content-Type': 'application/json'
+                    }
+                }).then(res => {
+                    res.json().then(messages => {
+                        console.log(messages)
+                        resolve(messages)
+
+                    })
+                })
+            })
+        }
 
 
 
